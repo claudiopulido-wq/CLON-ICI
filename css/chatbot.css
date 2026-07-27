@@ -1,0 +1,20 @@
+/* ---------- CHATBOT ---------- */
+.chat-fab{position:fixed;bottom:24px;right:24px;z-index:300;width:60px;height:60px;border-radius:50%;background:var(--ici-red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 10px 26px rgba(227,30,46,.4);transition:transform .2s; border: none; cursor: pointer;}
+.chat-fab:hover{transform:scale(1.06);}
+.chat-fab .ping{position:absolute;top:-3px;right:-3px;width:14px;height:14px;border-radius:50%;background:var(--ici-yellow);border:2px solid #fff;}
+.chat-panel{position:fixed;bottom:96px;right:24px;z-index:300;width:340px;max-width:88vw;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden;display:none;flex-direction:column;max-height:70vh; font-family: var(--font-secondary);}
+.chat-panel.open{display:flex;}
+.chat-head{background:var(--ici-blue);color:#fff;padding:16px 18px;display:flex;align-items:center;gap:10px;}
+.chat-head .dot-live{width:8px;height:8px;border-radius:50%;background:#4CD964;}
+.chat-head strong{font-size:.92rem;display:block;}
+.chat-head span{font-size:.72rem;opacity:.8;}
+.chat-body{padding:16px;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#f9f9f9;}
+.msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:.84rem;line-height:1.4;}
+.msg.bot{background:#fff;align-self:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.06);border-bottom-left-radius:4px; color: #333;}
+.msg.user{background:var(--ici-blue);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 12px;background:#f9f9f9;}
+.chat-suggestions button{font-size:.74rem;padding:7px 12px;border-radius:100px;border:1px solid #E0E0E0;background:#fff;font-weight:600; cursor: pointer;}
+.chat-suggestions button:hover{border-color:var(--ici-blue);color:var(--ici-blue);}
+.chat-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid #EEE;background:#fff;}
+.chat-input-row input{flex:1;border:1px solid #E0E0E0;border-radius:100px;padding:10px 16px;font-size:.85rem; outline: none;}
+.chat-input-row button{width:40px;height:40px;border-radius:50%;background:var(--ici-red);color:#fff;flex-shrink:0; border: none; cursor: pointer;}
