@@ -1120,20 +1120,7 @@ footer {
 }
 
 /* Yellow brush under */
-.ask-advisor-image::before {
-  content: '';
-  position: absolute;
-  top: 30%;
-  left: 5%;
-  width: 90%;
-  height: 40%;
-  background: var(--color-secondary);
-  opacity: 0.6;
-  border-radius: 50% 50% 30% 70% / 60% 40% 70% 40%;
-  transform: rotate(-10deg);
-  z-index: 1;
-  mix-blend-mode: multiply;
-}
+
 
 .ask-advisor-content {
   flex: 1;
