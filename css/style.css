@@ -1106,7 +1106,7 @@ footer {
 /* Ask an Advisor Section */
 .ask-advisor-section {
   display: flex;
-  background-color: var(--color-white);
+  background-color: #f9f9f9;
   padding: 4rem 0;
   min-height: 80vh;
 }
@@ -1117,15 +1117,6 @@ footer {
   background-size: cover;
   background-position: center;
   position: relative;
-  /* Trying a brush stroke clipping mask using SVG data uri (rough brush shape) */
-  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M20,100 Q80,20 180,90 T20,100" fill="black" stroke="black" stroke-width="40" stroke-linecap="round"/></svg>');
-  mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path d="M20,100 Q80,20 180,90 T20,100" fill="black" stroke="black" stroke-width="40" stroke-linecap="round"/></svg>');
-  -webkit-mask-size: 80%;
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-size: 80%;
-  mask-repeat: no-repeat;
-  mask-position: center;
 }
 
 /* Yellow brush under */
@@ -1137,9 +1128,11 @@ footer {
   width: 90%;
   height: 40%;
   background: var(--color-secondary);
+  opacity: 0.6;
   border-radius: 50% 50% 30% 70% / 60% 40% 70% 40%;
   transform: rotate(-10deg);
-  z-index: -1;
+  z-index: 1;
+  mix-blend-mode: multiply;
 }
 
 .ask-advisor-content {
@@ -1400,13 +1393,18 @@ footer {
 
 @media (max-width: 900px) {
   .ask-advisor-section {
-    flex-direction: column;
-  }
+  display: flex;
+  background-color: #f9f9f9;
+  padding: 4rem 0;
+  min-height: 80vh;
+}
   .ask-advisor-image {
-    min-height: 350px;
-    -webkit-mask-size: 100%;
-    mask-size: 100%;
-  }
+  flex: 1;
+  background-image: url('../assets/block2.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
   .ask-advisor-content {
     max-width: 100%;
   }
