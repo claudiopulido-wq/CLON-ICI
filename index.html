@@ -346,6 +346,263 @@
         </div>
     </section>
 
+    
+    <!-- Ask an Advisor Section -->
+    <section class="ask-advisor-section" id="ask-advisor">
+        <div class="ask-advisor-image"></div>
+        <div class="ask-advisor-content">
+            <h2>Ask an <span>Advisor</span></h2>
+            <p>Not sure which program is best to achieve your goals? Let us help you build the best possible program for you!</p>
+            
+            <div class="quiz-container-box">
+                <!-- Form Container -->
+                <div id="quiz-container">
+                    <div class="quiz-progress">
+                        <span class="quiz-step-counter">1/7</span>
+                        <div class="quiz-progress-bar">
+                            <div class="quiz-progress-bar-fill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    
+                    <form id="advisor-quiz">
+                        <!-- Step 1 -->
+                        <div class="quiz-step active" id="step-1">
+                            <h3>What are you interested in?</h3>
+                            <p class="subtitle">Pick as many as you like!</p>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="checkbox" name="interest" value="Mat Pilates"> Mat Pilates</label>
+                                <label class="quiz-option"><input type="checkbox" name="interest" value="Barre"> Barre</label>
+                                <label class="quiz-option"><input type="checkbox" name="interest" value="Sculpt & Burn"> Sculpt & Burn</label>
+                                <label class="quiz-option"><input type="checkbox" name="interest" value="I'm not sure yet"> I'm not sure yet</label>
+                            </div>
+                            <div class="quiz-actions" style="justify-content: flex-end;">
+                                <button type="button" class="btn-next">Next →</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div class="quiz-step" id="step-2">
+                            <h3>What's your experience level?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="experience" value="I'm completely new"> I'm completely new</label>
+                                <label class="quiz-option"><input type="radio" name="experience" value="I've taken classes before"> I've taken classes before</label>
+                                <label class="quiz-option"><input type="radio" name="experience" value="I already teach classes"> I already teach classes</label>
+                                <label class="quiz-option"><input type="radio" name="experience" value="I've been teaching for several years"> I've been teaching for several years</label>
+                            </div>
+                            <div class="quiz-actions">
+                                <button type="button" class="btn-back">← Back</button>
+                                <button type="button" class="btn-next">Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="quiz-step" id="step-3">
+                            <h3>What best describes your goal?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="goal" value="Start teaching professionally"> Start teaching professionally</label>
+                                <label class="quiz-option"><input type="radio" name="goal" value="Add another certification"> Add another certification</label>
+                                <label class="quiz-option"><input type="radio" name="goal" value="Validate my current experience"> Validate my current experience</label>
+                                <label class="quiz-option"><input type="radio" name="goal" value="Open my own studio"> Open my own studio</label>
+                            </div>
+                            <div class="quiz-actions">
+                                <button type="button" class="btn-back">← Back</button>
+                                <button type="button" class="btn-next">Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="quiz-step" id="step-4">
+                            <h3>Which learning experience fits you best?</h3>
+                            <div class="quiz-options">
+                                <label class="quiz-option"><input type="radio" name="learning" value="Weekend in-person certification"> Weekend in-person certification</label>
+                                <label class="quiz-option"><input type="radio" name="learning" value="Distance-based competency assessment"> Distance-based competency assessment</label>
+                                <label class="quiz-option"><input type="radio" name="learning" value="I'm open to either option"> I'm open to either option</label>
+                                <label class="quiz-option"><input type="radio" name="learning" value="I'm not sure"> I'm not sure</label>
+                            </div>
+                            <div class="quiz-actions">
+                                <button type="button" class="btn-back">← Back</button>
+                                <button type="button" class="btn-next">Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="quiz-step" id="step-5">
+                            <h3>Where should we send your personalized recommendation?</h3>
+                            <div class="quiz-inputs">
+                                <label>Email <span>*</span></label>
+                                <input type="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                            <div class="quiz-actions">
+                                <button type="button" class="btn-back">← Back</button>
+                                <button type="button" class="btn-next">Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 6 -->
+                        <div class="quiz-step" id="step-6">
+                            <h3>Tell us your name</h3>
+                            <div class="quiz-inputs">
+                                <label>First Name <span>*</span></label>
+                                <input type="text" id="quiz-fname" name="fname" required placeholder="First Name">
+                                <label>Last Name <span>*</span></label>
+                                <input type="text" name="lname" required placeholder="Last Name">
+                            </div>
+                            <div class="quiz-actions">
+                                <button type="button" class="btn-back">← Back</button>
+                                <button type="button" class="btn-next">Next →</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 7 -->
+                        <div class="quiz-step" id="step-7">
+                            <h3>What's the best number to reach you?</h3>
+                            <div class="quiz-inputs">
+                                <label>Phone Number <span>*</span></label>
+                                <input type="tel" name="phone" required placeholder="+1 234 567 8900">
+                                
+                                <label style="font-weight: normal; font-size: 0.8rem; margin-top: 10px; display: flex; align-items: start; gap: 10px;">
+                                    <input type="checkbox" name="agree" style="margin-top: 3px;">
+                                    I agree to receive updates regarding my certification.
+                                </label>
+                            </div>
+                            <div class="quiz-actions">
+                                <button type="button" class="btn-back">← Back</button>
+                                <button type="button" class="btn-submit">Get My Recommendation →</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Results Container -->
+                <div id="results-container">
+                    <!-- RESULT 1 -->
+                    <div class="result-card" id="result-1">
+                        <h3>Mat Pilates Certification</h3>
+                        <p class="result-greeting">Hi [First Name], your evaluation kit is on its way. Based on your responses, we recommend our Mat Pilates Certification.</p>
+                        <h4>Your Personalized Path: Mat Pilates Certification</h4>
+                        <div class="result-why">
+                            <p style="font-weight: bold; margin-bottom: 5px;">Why this fits you</p>
+                            <ul>
+                                <li>Perfect foundation for new instructors.</li>
+                                <li>Learn movement, technique, and teaching fundamentals.</li>
+                                <li>Internationally recognized certification.</li>
+                                <li>Build confidence before leading your own classes.</li>
+                            </ul>
+                        </div>
+                        <div class="result-buttons">
+                            <a href="#" class="btn-outline">Learn More</a>
+                            <a href="#" class="btn-submit">Enroll Now</a>
+                        </div>
+                    </div>
+                    
+                    <!-- RESULT 2 -->
+                    <div class="result-card" id="result-2">
+                        <h3>Barre Certification</h3>
+                        <p class="result-greeting">Hi [First Name], your evaluation kit is on its way. Based on your responses, we recommend our Barre Certification.</p>
+                        <h4>Your Personalized Path: Barre Certification</h4>
+                        <div class="result-why">
+                            <p style="font-weight: bold; margin-bottom: 5px;">Why this fits you</p>
+                            <ul>
+                                <li>Ideal if you enjoy rhythm, music, and fluid movement.</li>
+                                <li>Perfect addition to your fitness career.</li>
+                                <li>Internationally recognized certification.</li>
+                                <li>Great for boutique studios and group fitness.</li>
+                            </ul>
+                        </div>
+                        <div class="result-buttons">
+                            <a href="#" class="btn-outline">Learn More</a>
+                            <a href="#" class="btn-submit">Enroll Now</a>
+                        </div>
+                    </div>
+
+                    <!-- RESULT 3 -->
+                    <div class="result-card" id="result-3">
+                        <h3>Sculpt & Burn Certification</h3>
+                        <p class="result-greeting">Hi [First Name], your evaluation kit is on its way. Based on your responses, we recommend our Sculpt & Burn Certification.</p>
+                        <h4>Your Personalized Path: Sculpt & Burn Certification</h4>
+                        <div class="result-why">
+                            <p style="font-weight: bold; margin-bottom: 5px;">Why this fits you</p>
+                            <ul>
+                                <li>High-energy functional workouts.</li>
+                                <li>Great for coaches looking to diversify.</li>
+                                <li>Fast-growing training methodology.</li>
+                                <li>International certification.</li>
+                            </ul>
+                        </div>
+                        <div class="result-buttons">
+                            <a href="#" class="btn-outline">Learn More</a>
+                            <a href="#" class="btn-submit">Enroll Now</a>
+                        </div>
+                    </div>
+
+                    <!-- RESULT 4 -->
+                    <div class="result-card" id="result-4">
+                        <h3>Triple Certification Bundle</h3>
+                        <p class="result-greeting">Hi [First Name], your evaluation kit is on its way. Based on your responses, we recommend our Triple Certification Bundle.</p>
+                        <h4>Your Personalized Path: Triple Certification Bundle</h4>
+                        <div class="result-why">
+                            <p style="font-weight: bold; margin-bottom: 5px;">Why this fits you</p>
+                            <ul>
+                                <li>Master Mat Pilates, Barre, and Sculpt & Burn.</li>
+                                <li>Save compared to enrolling separately.</li>
+                                <li>Expand your coaching opportunities.</li>
+                                <li>Become a more versatile instructor.</li>
+                            </ul>
+                        </div>
+                        <div class="result-buttons">
+                            <a href="#" class="btn-outline">Learn More</a>
+                            <a href="#" class="btn-submit">Enroll Now</a>
+                        </div>
+                    </div>
+
+                    <!-- RESULT 5 -->
+                    <div class="result-card" id="result-5">
+                        <h3>Competency Assessment</h3>
+                        <p class="result-greeting">Hi [First Name], your evaluation kit is on its way. Based on your responses, we recommend our Competency Assessment Pathway.</p>
+                        <h4>Your Personalized Path: Competency Assessment</h4>
+                        <div class="result-why">
+                            <p style="font-weight: bold; margin-bottom: 5px;">Why this fits you</p>
+                            <ul>
+                                <li>Designed for experienced instructors.</li>
+                                <li>Validate your skills without taking the full certification.</li>
+                                <li>Complete a theory and practical assessment.</li>
+                                <li>Earn an internationally recognized certification.</li>
+                            </ul>
+                        </div>
+                        <div class="result-buttons">
+                            <a href="#" class="btn-outline">Learn More</a>
+                            <a href="#" class="btn-submit">Start Assessment</a>
+                        </div>
+                    </div>
+
+                    <!-- RESULT 6 -->
+                    <div class="result-card" id="result-6">
+                        <h3>Personalized Advisor Recommendation</h3>
+                        <p class="result-greeting">Hi [First Name], your evaluation kit is on its way. Based on your responses, we recommend speaking with one of our advisors.</p>
+                        <h4>Your Personalized Path: Advisor Consultation</h4>
+                        <div class="result-why">
+                            <p style="font-weight: bold; margin-bottom: 5px;">Why this fits you</p>
+                            <ul>
+                                <li>You're exploring multiple options.</li>
+                                <li>We'll help you compare every certification pathway.</li>
+                                <li>Get personalized guidance based on your goals.</li>
+                                <li>Find the certification that best fits your experience.</li>
+                            </ul>
+                        </div>
+                        <div class="result-buttons">
+                            <a href="#" class="btn-submit">Talk to an Advisor</a>
+                            <a href="#" class="btn-outline">WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <div class="btn-restart-wrap">
+                        <a href="#" id="btn-restart">Take the quiz again</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -396,5 +653,6 @@
 
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>
+    <script src="js/quiz.js"></script>
 </body>
 </html>
