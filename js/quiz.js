@@ -144,7 +144,40 @@ document.addEventListener('DOMContentLoaded', () => {
             if (greeting) {
                 greeting.innerHTML = greeting.innerHTML.replace('[First Name]', name);
             }
+            
+            // Send welcome email using the backend PHP script
+            sendWelcomeEmail(resultId, targetCard, name);
         }
+    }
+    
+    function sendWelcomeEmail(resultId, targetCard, name) {
+        const emailInput = document.querySelector('input[name="email"]');
+        if (!emailInput) return;
+        
+        const email = emailInput.value;
+        const title = targetCard.querySelector('h3')?.textContent || 'Personalized Advisor Recommendation';
+        const whyBullets = Array.from(targetCard.querySelectorAll('.result-why li')).map(li => li.textContent);
+        
+        fetch('send_email.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                fname: name,
+                result_id: resultId,
+                result_title: title,
+                result_why: whyBullets
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Email status:', data);
+        })
+        .catch(err => {
+            console.error('Error sending email:', err);
+        });
     }
     
     // Restart Quiz
