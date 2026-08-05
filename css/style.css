@@ -1119,19 +1119,21 @@ footer {
 }
 
 .ask-advisor-image-container {
-  flex: 1.1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  height: 100%;
+  flex: 1.2;
+  align-self: stretch;
+  position: relative;
+  min-height: 580px;
 }
 
-.ask-advisor-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  max-height: 580px;
+.ask-advisor-image-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/Block2_final.webp');
+  background-size: cover;
+  background-position: center bottom;
 }
 
 .ask-advisor-content {
@@ -1402,11 +1404,8 @@ footer {
   .ask-advisor-image-container {
     flex: none;
     width: 100%;
-    max-height: 380px;
-  }
-  .ask-advisor-img {
-    max-height: 350px;
-    margin: 0 auto;
+    height: 380px;
+    min-height: auto;
   }
   .ask-advisor-content {
     flex: none;
