@@ -125,8 +125,8 @@
 
         /* Premium Bundle Banner */
         .premium-bundle-banner {
-            background: linear-gradient(135deg, #1c2b39 0%, #111a22 100%);
-            color: #fff;
+            background: #fff;
+            color: var(--color-dark);
             padding: 4rem;
             border-radius: 12px;
             margin: 4rem auto;
@@ -135,11 +135,11 @@
             grid-template-columns: 1.5fr 1fr;
             gap: 3rem;
             align-items: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             text-align: left;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid #eee;
         }
         .premium-bundle-banner::before {
             content: '';
@@ -165,7 +165,7 @@
         }
         .premium-bundle-content p {
             font-size: 1.05rem;
-            color: #ccc;
+            color: #555;
             line-height: 1.6;
             margin-bottom: 2rem;
         }
@@ -177,7 +177,7 @@
         .premium-features li {
             margin-bottom: 12px;
             font-size: 0.95rem;
-            color: #ddd;
+            color: #444;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -187,8 +187,8 @@
             font-size: 1.1rem;
         }
         .premium-bundle-action {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: #f9f9f9;
+            border: 1px solid #eee;
             padding: 2rem;
             border-radius: 8px;
             text-align: center;
@@ -196,7 +196,7 @@
         .bundle-price-tag {
             font-size: 2.5rem;
             font-weight: 900;
-            color: #fff;
+            color: var(--color-dark);
             margin-bottom: 5px;
         }
         .bundle-price-tag span {
@@ -204,7 +204,7 @@
         }
         .bundle-price-sub {
             font-size: 0.85rem;
-            color: #aaa;
+            color: #666;
             margin-bottom: 1.5rem;
             line-height: 1.4;
         }
