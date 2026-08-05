@@ -203,6 +203,59 @@
         </div>
     </header>
 
+    <!-- Interactive 3-Column Hero Section -->
+    <section class="interactive-hero-section">
+        <div class="container">
+            <div class="interactive-hero-grid">
+                <!-- Column 1: Thumbnails -->
+                <div class="hero-thumbnails">
+                    <div class="hero-thumbnail active" data-type="image" data-src="assets/portada_1.jpg">
+                        <img src="assets/portada_1.jpg" alt="Thumbnail 1">
+                    </div>
+                    <div class="hero-thumbnail" data-type="image" data-src="assets/Block2_final.webp">
+                        <img src="assets/Block2_final.webp" alt="Thumbnail 2">
+                    </div>
+                    <div class="hero-thumbnail" data-type="video" data-src="https://www.youtube.com/embed/5qyXgZ1a5SM">
+                        <img src="assets/block2.jpg" alt="Thumbnail Video">
+                        <div class="video-play-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="hero-thumbnail" data-type="image" data-src="assets/para-mail.jpg">
+                        <img src="assets/para-mail.jpg" alt="Thumbnail 4">
+                    </div>
+                </div>
+
+                <!-- Column 2: Main Media Viewer -->
+                <div class="hero-main-viewer" id="main-media-viewer">
+                    <img src="assets/portada_1.jpg" alt="Elite Trainer Main">
+                </div>
+
+                <!-- Column 3: Package Details -->
+                <div class="hero-package-details">
+                    <div>
+                        <h2>Elite Trainer</h2>
+                        <div class="promo-tag">Save $150! Code: PURPOSE150</div>
+                        
+                        <ul class="benefit-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Earn CPT, Nutrition Coach, and Strength & Conditioning certifications</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Add one specialization to tailor your expertise</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Master integrated training and nutrition strategies</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Expand your scope across athletes, performance, and wellness clients</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Increase earning potential with advanced, in-demand skills</li>
+                        </ul>
+                    </div>
+
+                    <div class="price-box">
+                        <div class="price-title">Starting at</div>
+                        <div class="price-val">$139<span>/mo</span></div>
+                        <button class="btn-hero-start">Start Your Career Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Elite Bundle Hero Section -->
     <section class="hero-issa" style="min-height: 70vh; background-color: var(--color-white); border-bottom: 1px solid #ddd;">
         <div class="hero-content container">
@@ -308,5 +361,27 @@
 
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const thumbs = document.querySelectorAll('.hero-thumbnail');
+        const viewer = document.getElementById('main-media-viewer');
+        
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                thumbs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const mediaType = this.getAttribute('data-type');
+                const mediaSrc = this.getAttribute('data-src');
+                
+                if (mediaType === 'image') {
+                    viewer.innerHTML = `<img src="${mediaSrc}" alt="Elite Trainer" style="width: 100%; height: 100%; object-fit: cover;">`;
+                } else if (mediaType === 'video') {
+                    viewer.innerHTML = `<iframe width="100%" height="100%" src="${mediaSrc}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:0; width:100%; height:100%;"></iframe>`;
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
