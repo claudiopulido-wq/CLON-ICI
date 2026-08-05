@@ -142,6 +142,93 @@
         </div>
     </header>
 
+    <!-- Interactive 3-Column Hero Section -->
+    <section class="interactive-hero-section">
+        <div class="container">
+            <div class="interactive-hero-grid">
+                <!-- Column 1: Thumbnails -->
+                <div class="hero-thumbnails">
+                    <div class="hero-thumbnail active" data-type="image" data-src="assets/portada_1.jpg">
+                        <img src="assets/portada_1.jpg" alt="Thumbnail 1">
+                    </div>
+                    <div class="hero-thumbnail" data-type="image" data-src="assets/Block2_final.webp">
+                        <img src="assets/Block2_final.webp" alt="Thumbnail 2">
+                    </div>
+                    <div class="hero-thumbnail" data-type="video" data-src="https://www.youtube.com/embed/5qyXgZ1a5SM">
+                        <img src="assets/block2.jpg" alt="Thumbnail Video">
+                        <div class="video-play-overlay">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="hero-thumbnail" data-type="image" data-src="assets/para-mail.jpg">
+                        <img src="assets/para-mail.jpg" alt="Thumbnail 4">
+                    </div>
+                </div>
+
+                <!-- Column 2: Main Media Viewer -->
+                <div class="hero-main-viewer" id="main-media-viewer">
+                    <img src="assets/portada_1.jpg" alt="Mat Pilates Main">
+                </div>
+
+                <!-- Column 3: Package Details -->
+                <div class="hero-package-details">
+                    <h2>Mat Pilates Certification</h2>
+                    <div class="rating-stars">
+                        <span class="stars">⭐⭐⭐⭐⭐</span> <span class="rating-text">4.9 (2,000+ Graduates)</span>
+                    </div>
+                    
+                    <ul class="benefit-list">
+                        <li><i class="fa-solid fa-check"></i> Official & internationally recognized certification</li>
+                        <li><i class="fa-solid fa-check"></i> Learn the complete Mat Pilates methodology</li>
+                        <li><i class="fa-solid fa-check"></i> Master movement, control, and proper technique</li>
+                        <li><i class="fa-solid fa-check"></i> Join a community of over 70,000 certified professionals</li>
+                        <li><i class="fa-solid fa-check"></i> Career support after graduation</li>
+                    </ul>
+
+                    <p class="package-description">
+                        Build a strong foundation in Mat Pilates through ICI's in-person certification program. Gain the knowledge, technique, and confidence to safely lead professional classes while earning an officially recognized certification.
+                    </p>
+
+                    <div class="payment-options-box">
+                        <h4 class="payment-header">TUITION & ENROLLMENT</h4>
+                        
+                        <div class="payment-row">
+                            <div class="payment-label">
+                                <strong>Enrollment</strong><br>
+                                <span>$300 USD Enrollment Fee</span>
+                            </div>
+                            <div class="payment-desc">Reserve your seat for the next certification edition. This amount is credited toward your total tuition.</div>
+                        </div>
+                        
+                        <div class="payment-row">
+                            <div class="payment-label">
+                                <strong>Remaining Tuition</strong><br>
+                                <span>$550 USD Balance</span>
+                            </div>
+                            <div class="payment-desc">Due before the certification edition begins.</div>
+                        </div>
+                        
+                        <div class="payment-row total-tuition-row">
+                            <div class="payment-label">
+                                <strong>Total Tuition</strong><br>
+                                <span class="total-price">$850 USD</span>
+                            </div>
+                            <div class="payment-desc">One-Time Tuition</div>
+                        </div>
+                    </div>
+
+                    <button class="btn-hero-start">Reserve Your Seat</button>
+
+                    <div class="hero-footer-info">
+                        <span>🏛️ Official & International Recognition</span>
+                        <span>🎓 In-Person Professional Certification</span>
+                        <span>🤝 Career Support After Graduation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pilates Hero Section -->
     <section class="hero-issa" style="min-height: 70vh;">
         <div class="hero-content container">
@@ -226,5 +313,28 @@
 
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Thumbnail switching logic
+        const thumbs = document.querySelectorAll('.hero-thumbnail');
+        const viewer = document.getElementById('main-media-viewer');
+        
+        thumbs.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                thumbs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                const mediaType = this.getAttribute('data-type');
+                const mediaSrc = this.getAttribute('data-src');
+                
+                if (mediaType === 'image') {
+                    viewer.innerHTML = `<img src="${mediaSrc}" alt="Mat Pilates" style="width: 100%; height: 100%; object-fit: cover;">`;
+                } else if (mediaType === 'video') {
+                    viewer.innerHTML = `<iframe width="100%" height="100%" src="${mediaSrc}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border:0; width:100%; height:100%;"></iframe>`;
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
