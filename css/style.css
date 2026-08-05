@@ -1684,3 +1684,140 @@ footer {
     display: flex;
   }
 }
+
+/* Package Tabs Styling */
+.package-tabs {
+  display: flex;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 1.5rem;
+  gap: 10px;
+}
+
+.package-tab-btn {
+  flex: 1;
+  padding: 10px;
+  background: none;
+  border: none;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.package-tab-btn:hover, .package-tab-btn.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.package-tab-content {
+  display: none;
+}
+
+.package-tab-content.active {
+  display: block;
+}
+
+/* Rating Stars */
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.stars {
+  letter-spacing: -2px;
+}
+
+.rating-text {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 600;
+}
+
+/* Package Description */
+.package-description {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+/* Payment Options Box */
+.payment-options-box {
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-header {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #888;
+  letter-spacing: 1px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.payment-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+  align-items: start;
+}
+
+.payment-label strong {
+  font-size: 0.85rem;
+  color: var(--color-dark);
+}
+
+.payment-label span {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.payment-desc {
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.total-tuition-row {
+  border-top: 1px dashed #ccc;
+  padding-top: 12px;
+  margin-bottom: 0;
+}
+
+.total-price {
+  font-size: 1.1rem !important;
+  font-weight: 900;
+  color: var(--color-primary) !important;
+}
+
+/* Hero Footer Info */
+.hero-footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 1.5rem;
+  border-top: 1px solid #eee;
+  padding-top: 1.2rem;
+}
+
+.hero-footer-info span {
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
