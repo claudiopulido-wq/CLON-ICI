@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrenamiento de Maestros de Yoga 200 Horas | ICI</title>
+    <title>In-Person Certifications | ICI</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,6 +11,118 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/chatbot.css">
+    <style>
+        .inperson-hero {
+            padding: 5rem 0;
+            background-color: #f9f9f9;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .inperson-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--color-secondary);
+            font-family: var(--font-primary);
+        }
+        .inperson-hero h1 span {
+            color: var(--color-primary);
+        }
+        .inperson-hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        .inperson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .inperson-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+            text-align: left;
+        }
+        .inperson-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            border-color: var(--color-primary);
+        }
+        .card-header-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        .card-header-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+        .card-content h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-dark);
+            margin-bottom: 1rem;
+            font-family: var(--font-primary);
+        }
+        .card-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            max-width: 100%;
+        }
+        .card-price-box {
+            background: #f9f9f9;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #f0f0f0;
+        }
+        .price-row-main {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+        .price-row-sub {
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        .btn-card-action {
+            display: block;
+            width: 100%;
+            background-color: var(--color-secondary);
+            color: var(--color-dark);
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .btn-card-action:hover {
+            background-color: #e5b800;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,7 +132,7 @@
     </div>
 
     <!-- Main Navigation -->
-            <header>
+    <header>
         <div class="container navbar">
             <div class="logo">
                 <a href="index.html">
@@ -142,51 +254,71 @@
         </div>
     </header>
 
-    <!-- Yoga Hero Section -->
-    <section class="hero-issa" style="min-height: 70vh;">
-        <div class="hero-content container">
-            <div class="hero-text-box" style="width: 65%;">
-                <div class="badge" style="background-color: var(--color-primary); color: #000;">Aprobado por Yoga Alliance</div>
-                <h1>ENTRENAMIENTO DE MAESTROS DE YOGA <br><span>200 HORAS</span></h1>
-                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Transforma tu práctica personal en una carrera gratificante. Obtén tu certificación de 200 horas completamente en línea, diseñada para cumplir con los estándares internacionales más altos.</p>
-                
-                <ul style="list-style: none; margin-bottom: 2rem; color: var(--color-dark);">
-                    <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--color-primary); margin-right: 10px;"></i> Estudia asanas, anatomía, filosofía y metodología de enseñanza.</li>
-                    <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--color-primary); margin-right: 10px;"></i> Prácticas de enseñanza en vivo y retroalimentación personalizada.</li>
-                    <li style="margin-bottom: 10px;"><i class="fa-solid fa-check" style="color: var(--color-primary); margin-right: 10px;"></i> Elegible para registrarse como RYT-200.</li>
-                </ul>
-
-                <div class="hero-buttons" style="align-items: center;">
-                    <a href="#" class="btn-hero-primary" style="background-color: var(--color-tertiary); color: var(--color-dark); border: 2px solid var(--color-tertiary);">Inscríbete por $124.91/mes</a>
-                    <span style="color: var(--color-dark); margin-left: 15px; font-size: 0.9rem;">o $1,499 pago único</span>
-                </div>
-            </div>
-        </div>
-        <div class="hero-image-bg" style="background-image: url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1200&q=80'); width: 50%;"></div>
-    </section>
-
-    <!-- Course Details / Curriculum -->
-    <section style="padding: 5rem 0; background-color: #f9f9f9;">
+    <!-- In-Person Certifications Section -->
+    <section class="inperson-hero">
         <div class="container">
-            <h2 class="section-title" style="margin-bottom: 1rem;">Tu Camino Hacia la Maestría</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 3rem; color: #666; font-size: 1.1rem;">Nuestra certificación intensiva de 200 horas te da las raíces profundas necesarias para guiar a otros con seguridad y confianza.</p>
+            <h1>In-Person <span>Certifications</span></h1>
+            <p>Become certified through our hands-on, in-person training programs. Choose your discipline and start your fitness career path today.</p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--color-secondary);">
-                    <h3 style="color: var(--color-secondary); margin-bottom: 1rem; font-family: var(--font-primary);">1. Técnicas y Práctica</h3>
-                    <p style="color: #555; font-size: 0.95rem;">Estudio profundo de asanas (posturas), pranayama (respiración) y meditación. Aprende alineación precisa y modificaciones.</p>
+            <div class="inperson-grid">
+                <!-- Block 1: Sculpt & Burn -->
+                <div class="inperson-card">
+                    <div class="card-header-img">
+                        <img src="assets/block2.jpg" alt="Sculpt & Burn">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <h3>Sculpt & Burn Certification</h3>
+                            <p>Become a certified Sculpt & Burn Coach through our in-person certification program. View the details of the next certification edition, including the date, city, venue, and schedule, and reserve your place.</p>
+                        </div>
+                        <div>
+                            <div class="card-price-box">
+                                <div class="price-row-main">$850 USD</div>
+                                <div class="price-row-sub">One-Time Tuition<br>$300 USD Enrollment Fee (credited toward the total tuition).</div>
+                            </div>
+                            <a href="sculpt-and-burn.html" class="btn-card-action">View Next Edition</a>
+                        </div>
+                    </div>
                 </div>
-                <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--color-tertiary);">
-                    <h3 style="color: var(--color-secondary); margin-bottom: 1rem; font-family: var(--font-primary);">2. Anatomía Aplicada</h3>
-                    <p style="color: #555; font-size: 0.95rem;">Anatomía física y sutil (chakras, nadis). Comprende cómo el yoga afecta los diferentes sistemas del cuerpo humano.</p>
+
+                <!-- Block 2: Barre -->
+                <div class="inperson-card">
+                    <div class="card-header-img">
+                        <img src="assets/portada_1.jpg" alt="Barre">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <h3>Barre Certification</h3>
+                            <p>Earn your Barre Certification through our hands-on, in-person program. Explore the next certification edition to see the date, city, venue, and schedule, and secure your seat.</p>
+                        </div>
+                        <div>
+                            <div class="card-price-box">
+                                <div class="price-row-main">$850 USD</div>
+                                <div class="price-row-sub">One-Time Tuition<br>$300 USD Enrollment Fee (credited toward the total tuition).</div>
+                            </div>
+                            <a href="barre.html" class="btn-card-action">View Next Edition</a>
+                        </div>
+                    </div>
                 </div>
-                <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--color-primary);">
-                    <h3 style="color: var(--color-secondary); margin-bottom: 1rem; font-family: var(--font-primary);">3. Metodología de Enseñanza</h3>
-                    <p style="color: #555; font-size: 0.95rem;">Aprende a secuenciar clases de forma lógica, usar la voz, realizar ajustes manuales seguros y manejar la dinámica del grupo.</p>
-                </div>
-                <div style="background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid var(--color-secondary);">
-                    <h3 style="color: var(--color-secondary); margin-bottom: 1rem; font-family: var(--font-primary);">4. Filosofía y Estilo de Vida</h3>
-                    <p style="color: #555; font-size: 0.95rem;">Estudio de los Yoga Sutras de Patanjali, la ética del maestro de yoga y cómo integrar la práctica en la vida moderna.</p>
+
+                <!-- Block 3: Mat Pilates -->
+                <div class="inperson-card">
+                    <div class="card-header-img">
+                        <img src="assets/para-mail.jpg" alt="Mat Pilates">
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <h3>Mat Pilates Certification</h3>
+                            <p>Become a certified Mat Pilates Instructor through our in-person certification program. Check the next certification edition for the date, city, venue, and schedule, and begin your certification journey.</p>
+                        </div>
+                        <div>
+                            <div class="card-price-box">
+                                <div class="price-row-main">$850 USD</div>
+                                <div class="price-row-sub">One-Time Tuition<br>$300 USD Enrollment Fee (credited toward the total tuition).</div>
+                            </div>
+                            <a href="instructor-de-pilates.html" class="btn-card-action">View Next Edition</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -208,6 +340,7 @@
                         <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
+                
                 <div class="footer-links">
                     <div class="link-group">
                         <h4>Programas</h4>
