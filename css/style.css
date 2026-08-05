@@ -1105,26 +1105,38 @@ footer {
 
 /* Ask an Advisor Section */
 .ask-advisor-section {
-  display: flex;
   background-color: #f9f9f9;
-  padding: 4rem 0;
-  min-height: 80vh;
-}
-
-.ask-advisor-image {
-  flex: 1;
-  background-image: url('../assets/Block2_final.webp');
-  background-size: cover;
-  background-position: center;
+  padding: 4rem 0 0 0;
   position: relative;
+  overflow: hidden;
 }
 
-/* Yellow brush under */
+.ask-advisor-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 4rem;
+}
 
+.ask-advisor-image-container {
+  flex: 1.1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+}
+
+.ask-advisor-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  max-height: 580px;
+}
 
 .ask-advisor-content {
-  flex: 1;
-  padding: 2rem 5%;
+  flex: 0.9;
+  padding: 2rem 0 4rem 0;
   max-width: 600px;
 }
 
@@ -1380,19 +1392,26 @@ footer {
 
 @media (max-width: 900px) {
   .ask-advisor-section {
-  display: flex;
-  background-color: #f9f9f9;
-  padding: 4rem 0;
-  min-height: 80vh;
-}
-  .ask-advisor-image {
-  flex: 1;
-  background-image: url('../assets/Block2_final.webp');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
+    padding: 3rem 0;
+  }
+  .ask-advisor-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 3rem;
+  }
+  .ask-advisor-image-container {
+    flex: none;
+    width: 100%;
+    max-height: 380px;
+  }
+  .ask-advisor-img {
+    max-height: 350px;
+    margin: 0 auto;
+  }
   .ask-advisor-content {
+    flex: none;
+    width: 100%;
+    padding: 0;
     max-width: 100%;
   }
 }
