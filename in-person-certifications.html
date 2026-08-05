@@ -122,6 +122,120 @@
         .btn-card-action:hover {
             background-color: #e5b800;
         }
+
+        /* Premium Bundle Banner */
+        .premium-bundle-banner {
+            background: linear-gradient(135deg, #1c2b39 0%, #111a22 100%);
+            color: #fff;
+            padding: 4rem;
+            border-radius: 12px;
+            margin: 4rem auto;
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .premium-bundle-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: var(--color-primary);
+            opacity: 0.05;
+            filter: blur(80px);
+            border-radius: 50%;
+        }
+        .premium-bundle-content h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-family: var(--font-primary);
+            letter-spacing: 0.5px;
+            margin-top: 0;
+        }
+        .premium-bundle-content p {
+            font-size: 1.05rem;
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .premium-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        .premium-features li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #ddd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .premium-features li i {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+        .premium-bundle-action {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .bundle-price-tag {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .bundle-price-tag span {
+            color: var(--color-primary);
+        }
+        .bundle-price-sub {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+        .btn-premium-action {
+            display: block;
+            width: 100%;
+            background-color: var(--color-primary);
+            color: var(--color-dark);
+            text-align: center;
+            padding: 14px;
+            border-radius: 6px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(253,203,0,0.2);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-premium-action:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .premium-bundle-banner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin: 2rem 1rem;
+                padding: 2.5rem 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -319,6 +433,30 @@
                             <a href="instructor-de-pilates.html" class="btn-card-action">View Next Edition</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Promo Bundle Banner -->
+    <section style="padding: 1rem 0; background-color: #fff;">
+        <div class="container">
+            <div class="premium-bundle-banner">
+                <div class="premium-bundle-content">
+                    <h2>Movement Coach Package</h2>
+                    <p>Want to teach all three? Save 40% compared to purchasing each certification separately. Get certified in Sculpt & Burn, Barre, and Mat Pilates through a single comprehensive enrollment pathway.</p>
+                    
+                    <ul class="premium-features">
+                        <li><i class="fa-solid fa-circle-check"></i> Three professional credentials in one enrollment</li>
+                        <li><i class="fa-solid fa-circle-check"></i> High-value saving of $1,050 USD compared to individual courses</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Complete career support and studio placement after graduation</li>
+                    </ul>
+                </div>
+                
+                <div class="premium-bundle-action">
+                    <div class="bundle-price-tag">$1,500 <span>USD</span></div>
+                    <div class="bundle-price-sub">One-Time Tuition Package<br>or starting at $139 USD / month</div>
+                    <a href="paquete-entrenador-elite.html" class="btn-premium-action">Explore the Package</a>
                 </div>
             </div>
         </div>
