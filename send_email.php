@@ -3,6 +3,10 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(["status" => "error", "message" => "Only POST requests are allowed"]);
     exit;
@@ -30,7 +34,7 @@ $why_html = "";
 if (is_array($result_why) && count($result_why) > 0) {
     foreach ($result_why as $bullet) {
         // Strip checkmarks if already present, we will render it beautifully
-        $clean_bullet = ltrim(strip_tags($bullet), "✓ ");
+        $clean_bullet = htmlspecialchars(preg_replace('/^[\s✓]+/u', '', strip_tags((string) $bullet)));
         $why_html .= '<li style="margin-bottom: 8px; color: #555555; list-style: none;">✓ ' . $clean_bullet . '</li>';
     }
 } else {
@@ -104,7 +108,7 @@ $message = '
 
                             <!-- Section: Inside Your Evaluation Kit -->
                             <div style="margin-top: 40px; border-top: 1px solid #eeeeee; padding-top: 30px;">
-                                <h3 style="color: #e26a37; font-size: 20px; font-weight: 700; margin-top: 0; margin-bottom: 15px; text-align: center; font-family: 'Montserrat', sans-serif;">Inside Your Evaluation Kit</h3>
+                                <h3 style="color: #e26a37; font-size: 20px; font-weight: 700; margin-top: 0; margin-bottom: 15px; text-align: center; font-family: \'Montserrat\', sans-serif;">Inside Your Evaluation Kit</h3>
                                 <p style="color: #444444; font-size: 15px; line-height: 1.6; margin-bottom: 20px;">
                                     We've packed this guide with everything you need to make an informed decision about your future:
                                 </p>
@@ -118,7 +122,7 @@ $message = '
 
                             <!-- Section: Your 3-Step Start -->
                             <div style="margin-top: 35px; border-top: 1px solid #eeeeee; padding-top: 30px; margin-bottom: 10px;">
-                                <h3 style="color: #e26a37; font-size: 20px; font-weight: 700; margin-top: 0; margin-bottom: 20px; text-align: center; font-family: 'Montserrat', sans-serif;">Your 3-Step Start</h3>
+                                <h3 style="color: #e26a37; font-size: 20px; font-weight: 700; margin-top: 0; margin-bottom: 20px; text-align: center; font-family: \'Montserrat\', sans-serif;">Your 3-Step Start</h3>
                                 
                                 <!-- Step 1 -->
                                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f9f9f9; border-radius: 6px; margin-bottom: 15px; border: 1px solid #eeeeee;">
@@ -215,7 +219,7 @@ $message = '
 ';
 
 if (mail($email, $subject, $message, $headers)) {
-    echo json_encode(["status" => "success", "message" => "Email sent successfully to $email"]);
+    echo json_encode(["status" => "success", "message" => "Email sent successfully"]);
 } else {
     echo json_encode(["status" => "error", "message" => "Failed to send email. Check PHP mail configuration."]);
 }

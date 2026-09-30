@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const steps = document.querySelectorAll('.quiz-step');
     const nextBtns = document.querySelectorAll('.btn-next');
     const backBtns = document.querySelectorAll('.btn-back');
-    const submitBtn = document.querySelector('.btn-submit');
+    const submitBtn = document.querySelector('#advisor-quiz .btn-submit');
     const progressBar = document.querySelector('.quiz-progress-bar-fill');
     const stepCounter = document.querySelector('.quiz-step-counter');
     const quizForm = document.getElementById('advisor-quiz');
@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultsContainer = document.getElementById('results-container');
     const restartBtn = document.getElementById('btn-restart');
     
+    if (!quizForm) return;
+
     let currentStep = 1;
     const totalSteps = 7;
     
@@ -41,13 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (type === 'email' || type === 'text' || type === 'tel') {
             let isValid = true;
+            let firstInvalid = null;
             inputs.forEach(input => {
-                if (input.required && !input.value.trim()) {
+                const empty = input.required && !input.value.trim();
+                // checkValidity() valida también el formato del email
+                if (empty || !input.checkValidity()) {
                     isValid = false;
+                    firstInvalid = firstInvalid || input;
                 }
             });
             if (!isValid) {
-                alert('Please fill in all required fields.');
+                alert(firstInvalid.type === 'email' && firstInvalid.value.trim()
+                    ? 'Please enter a valid email address.'
+                    : 'Please fill in all required fields.');
+                firstInvalid.focus();
                 return false;
             }
         }
@@ -84,6 +93,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
+    // Enter en un campo de texto avanza al siguiente paso
+    if (quizForm) {
+        quizForm.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter' || e.target.tagName !== 'INPUT') return;
+            if (!['text', 'email', 'tel'].includes(e.target.type)) return;
+            e.preventDefault();
+            const step = document.getElementById(`step-${currentStep}`);
+            const btn = step.querySelector('.btn-next, .btn-submit');
+            if (btn) btn.click();
+        });
+    }
+
     // Selectable Option Styling
     const options = document.querySelectorAll('.quiz-option input');
     options.forEach(option => {
@@ -142,7 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Inject name
             const greeting = targetCard.querySelector('.result-greeting');
             if (greeting) {
-                greeting.innerHTML = greeting.innerHTML.replace('[First Name]', name);
+                // Guardamos la plantilla original y usamos textContent (sin inyección de HTML)
+                if (!greeting.dataset.template) greeting.dataset.template = greeting.textContent;
+                greeting.textContent = greeting.dataset.template.replace('[First Name]', name.trim());
             }
             
             // Send welcome email using the backend PHP script
@@ -190,10 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsContainer.style.display = 'none';
             quizContainer.style.display = 'block';
             showStep(currentStep);
-            
-            // Re-hide all names in greetings (hacky but works for demo)
+
+            // Restaurar las plantillas de saludo
             document.querySelectorAll('.result-greeting').forEach(el => {
-                el.innerHTML = el.innerHTML.replace(/Hi .*?,/, 'Hi [First Name],');
+                if (el.dataset.template) el.textContent = el.dataset.template;
             });
         });
     }

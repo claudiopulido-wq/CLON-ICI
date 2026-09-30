@@ -37,7 +37,7 @@
         }
         .inperson-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
             gap: 2.5rem;
             margin-top: 2rem;
         }
@@ -229,6 +229,9 @@
             transform: translateY(-2px);
         }
         @media (max-width: 768px) {
+            .inperson-hero { padding: 3rem 0; }
+            .inperson-hero h1 { font-size: clamp(1.8rem, 8vw, 2.4rem); overflow-wrap: break-word; }
+            .inperson-hero p { font-size: 1.05rem; margin-bottom: 2rem; }
             .premium-bundle-banner {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -241,7 +244,7 @@
 <body>
 
     <!-- Promo Banner Top -->
-    <div class="promo-banner-top" style="background-color: var(--color-primary); color: var(--color-dark); text-align: center; padding: 10px; font-family: var(--font-primary); font-weight: 700; font-size: 0.95rem;">
+    <div class="promo-banner-top" style="background-color: var(--color-primary); color: var(--color-white); text-align: center; padding: 10px; font-family: var(--font-primary); font-weight: 700; font-size: 0.95rem;">
         Ahorra $150 en el Paquete Entrenador Élite con el código <span style="background: var(--color-bg-gray); color: var(--color-dark); padding: 2px 6px; border-radius: 3px; margin-left: 5px;">PURPOSE150</span>
     </div>
 
@@ -361,8 +364,8 @@
             </ul>
             
             <div class="nav-actions">
-                <a href="#" class="icon-link"><i class="fa-solid fa-magnifying-glass"></i></a>
-                <a href="#" class="icon-link"><i class="fa-solid fa-phone"></i></a>
+                <a href="#" class="icon-link" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a href="https://wa.me/19567393519" class="icon-link" aria-label="Contacto por WhatsApp" target="_blank" rel="noopener"><i class="fa-solid fa-phone"></i></a>
                 <a href="#" class="btn-login"><i class="fa-solid fa-user"></i> Student Login</a>
             </div>
         </div>
@@ -468,7 +471,7 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <a href="index.html">
-                        <img src="assets/ici-logo-blanco.png" alt="ICI Logo" onerror="this.src='https://via.placeholder.com/150x50?text=Logo+Footer'">
+                        <img src="assets/ici-logo-color.png" alt="ICI Logo" onerror="this.src='https://via.placeholder.com/150x50?text=Logo+Footer'">
                     </a>
                     <p>Building the Next Generation of Fitness Professionals.</p>
                     <div class="social-icons">

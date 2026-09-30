@@ -15,13 +15,25 @@ const chatHTML = `
     <button onclick="chatAsk('¿Tiene validez internacional?')">Validez</button>
   </div>
   <div class="chat-input-row">
-    <input id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="if(event.key === 'Enter') chatSend()">
-    <button onclick="chatSend()"><i class="fa-solid fa-paper-plane"></i></button>
+    <input id="chatInput" aria-label="Escribe tu pregunta" placeholder="Escribe tu pregunta..." onkeypress="if(event.key === 'Enter') chatSend()">
+    <button onclick="chatSend()" aria-label="Enviar mensaje"><i class="fa-solid fa-paper-plane"></i></button>
   </div>
 </div>
 `;
 
-document.body.insertAdjacentHTML('beforeend', chatHTML);
+// Evita insertar el widget dos veces si el script se incluye más de una vez
+if (!document.getElementById('chatPanel')) {
+    document.body.insertAdjacentHTML('beforeend', chatHTML);
+}
+
+// Inserta texto del usuario como texto plano (evita inyección de HTML)
+function appendChatMsg(body, cls, text){
+    const div = document.createElement('div');
+    div.className = 'msg ' + cls;
+    div.textContent = text;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+}
 
 function toggleChat(){
     document.getElementById('chatPanel').classList.toggle('open');
@@ -37,13 +49,11 @@ function chatSend(){
   const text=input.value.trim();
   if(!text) return;
   const body=document.getElementById('chatBody');
-  body.insertAdjacentHTML('beforeend', `<div class="msg user">${text}</div>`);
+  appendChatMsg(body, 'user', text);
   input.value='';
-  body.scrollTop=body.scrollHeight;
   // TODO (Antigravity / backend): reemplazar este setTimeout por una llamada real
   // al servicio RAG (retrieval sobre temarios, precios, FAQs y políticas de ICI)
   setTimeout(()=>{
-    body.insertAdjacentHTML('beforeend', `<div class="msg bot">Esta es una respuesta simulada. Aquí se conectará el motor RAG con la base de conocimiento real de ICI (temarios, precios, políticas y FAQs) para responder: "${text}"</div>`);
-    body.scrollTop=body.scrollHeight;
+    appendChatMsg(body, 'bot', `Esta es una respuesta simulada. Aquí se conectará el motor RAG con la base de conocimiento real de ICI (temarios, precios, políticas y FAQs) para responder: "${text}"`);
   }, 500);
 }
