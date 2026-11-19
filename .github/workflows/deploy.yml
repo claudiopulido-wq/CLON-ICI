@@ -57,7 +57,7 @@ jobs:
           SG_USER: ${{ secrets.SG_USER }}
         run: |
           ssh -p "$SG_PORT" -o StrictHostKeyChecking=yes "$SG_USER@$SG_HOST" \
-            "ls -la $SG_PATH; echo '--- index*'; ls -la ${SG_PATH}index.* 2>/dev/null; echo '--- .htaccess'; cat ${SG_PATH}.htaccess 2>/dev/null"
+            "ls -la $SG_PATH; echo '--- index*'; ls -la ${SG_PATH}index.* 2>/dev/null; echo '--- .htaccess'; cat ${SG_PATH}.htaccess 2>/dev/null || echo '(no hay .htaccess)'; true"
 
       - name: Subir archivos con rsync
         env:
