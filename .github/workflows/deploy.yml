@@ -52,6 +52,13 @@ jobs:
             ssh-add ~/.ssh/sg_key < /dev/null
           rm -f ~/.ssh/sg_key ~/.ssh/askpass
 
+      - name: Mostrar qué hay hoy en el destino (solo lectura)
+        env:
+          SG_USER: ${{ secrets.SG_USER }}
+        run: |
+          ssh -p "$SG_PORT" -o StrictHostKeyChecking=yes "$SG_USER@$SG_HOST" \
+            "ls -la $SG_PATH; echo '--- index*'; ls -la ${SG_PATH}index.* 2>/dev/null; echo '--- .htaccess'; cat ${SG_PATH}.htaccess 2>/dev/null"
+
       - name: Subir archivos con rsync
         env:
           SG_USER: ${{ secrets.SG_USER }}
