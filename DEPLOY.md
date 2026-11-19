@@ -54,12 +54,15 @@ curl -s https://certifyyourfuture.org/our-story.html | grep -iE 'canonical|robot
 ```
 SiteGround tiene caché propia. Si se sigue viendo la versión vieja, ve a **Site Tools → Speed → Caching → Flush Cache**.
 
-## Restos de WordPress en el servidor
-Site Tools muestra certifyyourfuture.org como sitio WordPress. Lo revisé desde fuera el 2026-11-18:
-- `wp-admin/`, `wp-includes/` y `wp-content/` existen (responden 403; una carpeta que no existe da 404).
-- `index.php`, `wp-login.php` y `wp-json/` dan 404, así que WordPress no está activo y la portada es `index.html`.
+## WordPress: el panel lo marca, pero no hay nada en public_html
+Site Tools muestra certifyyourfuture.org con ícono de WordPress. Pero el dry_run del 2026-11-19 (run 44570721217) listó el contenido real de `public_html`: solo están los HTML del 30-sep, `assets/`, `css/`, `js/`, `.well-known/`, `send_email.php` y `php_errorlog`. No hay archivos de WordPress ni `.htaccess`.
+- Las respuestas 403 en `wp-admin/`, `wp-includes/` y `wp-content/` que se ven desde fuera son una regla de seguridad de SiteGround, no carpetas reales.
+- Puede quedar una base de datos de WordPress en la cuenta. Borrarla solo se hace con el «sí» explícito de Claudio.
 
-El workflow no borra nada de eso. Antes de cada publicación, el paso «Mostrar qué hay hoy en el destino» lista `public_html`, los `index.*` y el `.htaccess`. Limpiar WordPress (archivos y base de datos) solo se hace con el «sí» explícito de Claudio.
+Antes de cada publicación, el paso «Mostrar qué hay hoy en el destino» lista `public_html`, los `index.*` y el `.htaccess`.
+
+## Caché
+Las páginas cargan `css/style.css?v=AAAAMMDD`. Cuando cambie el CSS, sube ese número en las 8 páginas para que los visitantes no vean el CSS viejo. Si aun así se ve la versión anterior, ve a Site Tools → Speed → Caching → Flush Cache.
 
 ## Revertir
 Haz `git revert` del commit que causó el problema, haz push a `main` y publica de nuevo con el flujo normal, que también necesita aprobación. Como rsync no borra, un archivo **nuevo** que haya que quitar del servidor se elimina a mano desde el Administrador de archivos de Site Tools.
