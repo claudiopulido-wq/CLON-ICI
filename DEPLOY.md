@@ -62,7 +62,21 @@ Site Tools muestra certifyyourfuture.org con ícono de WordPress. Pero el dry_ru
 Antes de cada publicación, el paso «Mostrar qué hay hoy en el destino» lista `public_html`, los `index.*` y el `.htaccess`.
 
 ## Caché
-Las páginas cargan `css/style.css?v=AAAAMMDD` y `js/*.js?v=AAAAMMDD`. Cuando cambie el CSS o el JS, sube ese número en las 8 páginas para que los visitantes no vean la versión vieja. El `.htaccess` del repo (sí lo sube rsync) le pone `no-cache` a los `.html`, 1 hora a `sitemap.xml` y `robots.txt`, y 180 días a CSS, JS e imágenes. Si reemplazas una imagen con el mismo nombre, cámbiale el nombre o agrégale `?v=`. Si aun así se ve la versión anterior, ve a Site Tools → Speed → Caching → Flush Cache.
+Las páginas cargan `css/style.css?v=AAAAMMDD` y `js/*.js?v=AAAAMMDD`. Cuando cambie el CSS o el JS, sube ese número en las 8 páginas para que los visitantes no vean la versión vieja. Si reemplazas una imagen con el mismo nombre, cámbiale el nombre o agrégale `?v=`.
+
+El `.htaccess` del repo (sí lo sube rsync) le pone `no-cache` a los `.html`, 1 hora a `sitemap.xml` y `robots.txt`, y 180 días a CSS, JS e imágenes. **Pero solo funciona cuando responde Apache.** SiteGround tiene dos capas delante (revisado con `curl -I` el 2026-11-19):
+
+| Capa de SiteGround | Qué hace con este sitio | Cómo se nota | Arreglo |
+|---|---|---|---|
+| **NGINX Direct Delivery** (Speed → Caching) | nginx entrega directo `.html`, `.xml`, `.txt`, `.css` y `.js` sin pasar por Apache, con sus propias cabeceras: 180 días para HTML/XML/TXT y 1 año para CSS/JS. **Ignora el `.htaccess`.** | `/index.html` llega con `Cache-Control: max-age=15552000` y `Expires` a 6 meses, y sin `X-Httpd: 1` | Apagar NGINX Direct Delivery (botón On/Off). Así responde Apache y se aplica el `.htaccess`. Si no se quiere apagar, pedir a soporte de SiteGround un `expires` corto para `.html`, `.xml` y `.txt`. |
+| **Dynamic Cache** (Speed → Caching) | Guarda la respuesta de Apache (aquí, la de `/`) hasta 12 horas. Respeta `Cache-Control: no-cache`, pero la copia que ya tenía guardada sigue sirviéndose. | `/` entrega el HTML viejo (`js/main.js` sin `?v=`), aunque `/?x=1` y `/index.html` ya traen el nuevo | **Flush Cache** en Dynamic Cache después de cada publicación. Solo se puede vaciar completa; SiteGround no documenta purga por URL. |
+
+**Después de cada publicación:** Site Tools → Speed → Caching → Dynamic Cache → **Flush Cache**. Luego revisa:
+```bash
+curl -sI https://certifyyourfuture.org/index.html | grep -i cache-control   # no-cache (si Direct Delivery está apagado)
+curl -s  https://certifyyourfuture.org/ | grep -o 'js/main.js[^"]*'         # debe traer el ?v= actual
+```
+Quien ya visitó el sitio antes de esto puede tener el HTML guardado hasta 6 meses en su navegador. Eso no se puede borrar desde el servidor: se corrige solo cuando su navegador vuelva a pedir la página.
 
 ## Revertir
 Haz `git revert` del commit que causó el problema, haz push a `main` y publica de nuevo con el flujo normal, que también necesita aprobación. Como rsync no borra, un archivo **nuevo** que haya que quitar del servidor se elimina a mano desde el Administrador de archivos de Site Tools.
