@@ -1,0 +1,79 @@
+# Publica el sitio estático en SiteGround (certifyyourfuture.org) por SSH + rsync.
+# Solo se lanza a mano y cada ejecución espera la aprobación de Claudio en el
+# entorno "production". Ver DEPLOY.md.
+name: Publicar en SiteGround
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Simulación: muestra qué se subiría sin cambiar nada en el servidor"
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://certifyyourfuture.org/
+    env:
+      SG_HOST: ssh.certifyyourfuture.org
+      SG_PORT: "18765"
+      SG_PATH: www/certifyyourfuture.org/public_html/
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparar SSH (clave y huella fija del servidor)
+        env:
+          SG_SSH_KEY: ${{ secrets.SG_SSH_KEY }}
+          SG_SSH_PASSPHRASE: ${{ secrets.SG_SSH_PASSPHRASE }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SG_SSH_KEY" > ~/.ssh/sg_key
+          chmod 600 ~/.ssh/sg_key
+          # Huellas públicas del servidor SSH de SiteGround (tomadas el 2026-11-18).
+          cat > ~/.ssh/known_hosts <<'EOF'
+          [ssh.certifyyourfuture.org]:18765 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/kKQnuAjkssJ+INEczVEe6NEkknuAnuaw8wePOWuiL
+          [ssh.certifyyourfuture.org]:18765 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA2m+f6CQnGP8DutjmeQuRCtwG+9v0mfBhIsWhc/RyyH5RWWjbNvEjLLaz98k5bErpwiNeGovlWILog4rqp6cUsFiGZx+SPn6EGp2lUulWkqPCd2hGUSMDfSy2/jiOszyEwQ/BPqbFtJpeeRJH8RUs6mC7S4fMffvGUwQMdlL8O98GP/H/sjmqPPDkEwe2viczh7pvEYpCixCRURwWHs2Q02daKmvM9ZWfCA9V74FErgutqhotIXcpOqY/u0Qv3umKv2xKdCubUc0KLZlqIdKu/0icLQTY58VdTe/OeHFY8M5cPz+z3sseuTMVDY/bzsUD8vTsfrPlnqaf/wXB1eeSaQ==
+          EOF
+          sed -i 's/^ *//' ~/.ssh/known_hosts
+          # Las claves que genera Site Tools traen frase de acceso: se carga en ssh-agent.
+          eval "$(ssh-agent -s)"
+          echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK" >> "$GITHUB_ENV"
+          printf '#!/bin/sh\nprintf "%%s\\n" "$SG_SSH_PASSPHRASE"\n' > ~/.ssh/askpass
+          chmod 700 ~/.ssh/askpass
+          SSH_ASKPASS=~/.ssh/askpass SSH_ASKPASS_REQUIRE=force DISPLAY=none \
+            ssh-add ~/.ssh/sg_key < /dev/null
+          rm -f ~/.ssh/sg_key ~/.ssh/askpass
+
+      - name: Subir archivos con rsync
+        env:
+          SG_USER: ${{ secrets.SG_USER }}
+          DRY: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          FLAGS="-rlvz --checksum --itemize-changes"
+          if [ "$DRY" = "true" ]; then FLAGS="$FLAGS --dry-run"; echo "*** SIMULACIÓN: no se cambia nada ***"; fi
+          # Sin --delete: nunca borra archivos del servidor (p. ej. .htaccess).
+          rsync $FLAGS \
+            --exclude='.git/' --exclude='.github/' --exclude='.claude/' \
+            --exclude='*.py' --exclude='preview_email.html' \
+            --exclude='DEPLOY.md' --exclude='README*' --exclude='.gitignore' \
+            -e "ssh -p $SG_PORT -o StrictHostKeyChecking=yes" \
+            ./ "$SG_USER@$SG_HOST:$SG_PATH"
+
+      - name: Comprobar que el sitio responde
+        if: ${{ !inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          for p in / /our-story.html; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://certifyyourfuture.org${p}?v=${GITHUB_SHA}")
+            echo "$p -> $code"
+            [ "$code" = "200" ]
+          done
