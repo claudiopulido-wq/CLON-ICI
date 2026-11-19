@@ -62,7 +62,7 @@ Site Tools muestra certifyyourfuture.org con ícono de WordPress. Pero el dry_ru
 Antes de cada publicación, el paso «Mostrar qué hay hoy en el destino» lista `public_html`, los `index.*` y el `.htaccess`.
 
 ## Caché
-Las páginas cargan `css/style.css?v=AAAAMMDD`. Cuando cambie el CSS, sube ese número en las 8 páginas para que los visitantes no vean el CSS viejo. Si aun así se ve la versión anterior, ve a Site Tools → Speed → Caching → Flush Cache.
+Las páginas cargan `css/style.css?v=AAAAMMDD` y `js/*.js?v=AAAAMMDD`. Cuando cambie el CSS o el JS, sube ese número en las 8 páginas para que los visitantes no vean la versión vieja. El `.htaccess` del repo (sí lo sube rsync) le pone `no-cache` a los `.html`, 1 hora a `sitemap.xml` y `robots.txt`, y 180 días a CSS, JS e imágenes. Si reemplazas una imagen con el mismo nombre, cámbiale el nombre o agrégale `?v=`. Si aun así se ve la versión anterior, ve a Site Tools → Speed → Caching → Flush Cache.
 
 ## Revertir
 Haz `git revert` del commit que causó el problema, haz push a `main` y publica de nuevo con el flujo normal, que también necesita aprobación. Como rsync no borra, un archivo **nuevo** que haya que quitar del servidor se elimina a mano desde el Administrador de archivos de Site Tools.

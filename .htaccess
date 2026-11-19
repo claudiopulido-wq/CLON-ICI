@@ -1,0 +1,24 @@
+# certifyyourfuture.org: reglas de caché y portada (sitio estático)
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+    # Páginas: el navegador revalida en cada visita (con ETag/Last-Modified casi no gasta).
+    <FilesMatch "\.(html?)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+
+    # sitemap.xml y robots.txt: caché corta.
+    <FilesMatch "\.(xml|txt)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+
+    # CSS y JS se cargan con ?v=AAAAMMDD; imágenes, fuentes e íconos casi no cambian: caché larga.
+    <FilesMatch "\.(css|js|jpe?g|png|webp|gif|svg|ico|woff2?)$">
+        Header set Cache-Control "public, max-age=15552000"
+    </FilesMatch>
+</IfModule>
+
+# Nunca servir logs ni archivos ocultos.
+<FilesMatch "(^\.|_errorlog$|\.log$)">
+    Require all denied
+</FilesMatch>
