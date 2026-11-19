@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // El botón es un <div>; lo hacemos accesible por teclado y lector de pantalla
     mobileBtn.setAttribute('role', 'button');
     mobileBtn.setAttribute('tabindex', '0');
-    mobileBtn.setAttribute('aria-label', 'Abrir menú');
+    mobileBtn.setAttribute('aria-label', 'Open menu');
     mobileBtn.setAttribute('aria-expanded', 'false');
 
     function setMenuOpen(open) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileIcon.classList.toggle('fa-bars', !open);
         mobileIcon.classList.toggle('fa-xmark', open);
         mobileBtn.setAttribute('aria-expanded', String(open));
-        mobileBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        mobileBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
 
     mobileBtn.addEventListener('click', () => {
