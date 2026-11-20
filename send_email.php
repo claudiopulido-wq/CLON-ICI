@@ -64,7 +64,29 @@ if (!$email) {
     respond(400, "error", "A valid email address is required");
 }
 $fname        = clean($input['fname'] ?? '', 80);
-$result_id    = clean($input['result_id'] ?? '', 40);
+$lname        = clean($input['lname'] ?? '', 80);
+$phone        = preg_replace('/[^0-9+().\- ]/', '', clean($input['phone'] ?? '', 40));
+$agree        = !empty($input['agree']);
+$answer_labels = [
+    'interest'   => 'Le interesa',
+    'experience' => 'Experiencia',
+    'goal'       => 'Meta',
+    'learning'   => 'Modalidad preferida',
+];
+$answers = [];
+if (is_array($input['answers'] ?? null)) {
+    foreach ($answer_labels as $key => $label) {
+        $v = $input['answers'][$key] ?? [];
+        if (!is_array($v)) $v = [$v];
+        $vals = [];
+        foreach (array_slice($v, 0, 8) as $x) {
+            $x = clean($x, 120);
+            if ($x !== '') $vals[] = $x;
+        }
+        if ($vals) $answers[] = $label . ': ' . implode(', ', $vals);
+    }
+}
+$result_id   = clean($input['result_id'] ?? '', 40);
 $result_title = clean($input['result_title'] ?? '', 150);
 $why = [];
 if (is_array($input['result_why'] ?? null)) {
@@ -73,8 +95,12 @@ if (is_array($input['result_why'] ?? null)) {
 
 $subject = "Nuevo prospecto del quiz: " . ($result_title !== '' ? $result_title : 'sin resultado');
 $body  = "Nuevo prospecto desde el quiz «Ask an Advisor» de certifyyourfuture.org\n\n";
-$body .= "Nombre: " . ($fname !== '' ? $fname : '(sin nombre)') . "\n";
+$fullname = trim($fname . ' ' . $lname);
+$body .= "Nombre: " . ($fullname !== '' ? $fullname : '(sin nombre)') . "\n";
 $body .= "Correo: " . $email . "\n";
+$body .= "Teléfono: " . ($phone !== '' ? $phone : '(no lo dio)') . "\n";
+$body .= "Acepta recibir novedades: " . ($agree ? 'sí' : 'no') . "\n";
+if ($answers) $body .= "Respuestas del quiz:\n- " . implode("\n- ", $answers) . "\n";
 $body .= "Resultado: " . $result_title . " (" . $result_id . ")\n";
 if ($why) $body .= "Motivos mostrados:\n- " . implode("\n- ", $why) . "\n";
 $body .= "\nFecha (UTC): " . gmdate('Y-m-d H:i:s') . "\nIP: " . $ip . "\n";

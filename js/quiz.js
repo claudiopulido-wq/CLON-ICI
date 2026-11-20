@@ -181,6 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = targetCard.querySelector('h3')?.textContent || 'Personalized Advisor Recommendation';
         const whyBullets = Array.from(targetCard.querySelectorAll('.result-why li')).map(li => li.textContent);
         
+        const val = (sel) => document.querySelector(sel)?.value.trim() || '';
+        const checked = (n) => Array.from(document.querySelectorAll(`input[name="${n}"]:checked`)).map(i => i.value);
+
         fetch('send_email.php', {
             method: 'POST',
             headers: {
@@ -189,6 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
             body: JSON.stringify({
                 email: email,
                 fname: name,
+                lname: val('input[name="lname"]'),
+                phone: val('input[name="phone"]'),
+                agree: !!document.querySelector('input[name="agree"]')?.checked,
+                answers: {
+                    interest: checked('interest'),
+                    experience: checked('experience'),
+                    goal: checked('goal'),
+                    learning: checked('learning')
+                },
                 result_id: resultId,
                 result_title: title,
                 result_why: whyBullets
