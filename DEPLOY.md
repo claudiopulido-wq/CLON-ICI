@@ -85,3 +85,4 @@ Haz `git revert` del commit que causó el problema, haz push a `main` y publica 
 | Fecha | Commit | Notas |
 |---|---|---|
 | 2026-09-30 | `cc485b5` | Subida manual previa. Es la versión que estaba en vivo antes de este método. |
+| 2026-11-20 | `e8c2fd7` | Run #7 (44786624942), aprobado por Claudio: menú OUR STORY, logo en inglés provisional, quiz con teléfono y texto nuevo de la portada. Verificado en vivo. |
