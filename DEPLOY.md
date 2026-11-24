@@ -78,6 +78,14 @@ curl -s  https://certifyyourfuture.org/ | grep -o 'js/main.js[^"]*'         # de
 ```
 Quien ya visitó el sitio antes de esto puede tener el HTML guardado hasta 6 meses en su navegador. Eso no se puede borrar desde el servidor: se corrige solo cuando su navegador vuelva a pedir la página.
 
+## Página del curso en línea (online-course.html)
+Se genera desde el JSON público del portal. Si cambia el temario o el texto del curso en la plataforma, regenérala:
+```bash
+curl -s https://learn.certifyyourfuture.org/api/publico/ici/cursos -o /tmp/cursos.json
+python tools/gen_online_course.py . /tmp/cursos.json
+```
+Usa `our-story.html` como plantilla del encabezado y el pie. Revisa el diff antes del commit. El script no se sube al servidor, porque `*.py` está excluido.
+
 ## Revertir
 Haz `git revert` del commit que causó el problema, haz push a `main` y publica de nuevo con el flujo normal, que también necesita aprobación. Como rsync no borra, un archivo **nuevo** que haya que quitar del servidor se elimina a mano desde el Administrador de archivos de Site Tools.
 
