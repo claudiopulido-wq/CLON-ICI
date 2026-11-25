@@ -71,7 +71,7 @@ jobs:
           rsync $FLAGS \
             --exclude='.git/' --exclude='.github/' --exclude='.claude/' \
             --exclude='*.py' --exclude='preview_email.html' \
-            --exclude='DEPLOY.md' --exclude='README*' --exclude='.gitignore' \
+            --exclude='*.md' --exclude='tools/' --exclude='README*' --exclude='.gitignore' \
             -e "ssh -p $SG_PORT -o StrictHostKeyChecking=yes" \
             ./ "$SG_USER@$SG_HOST:$SG_PATH"
 
