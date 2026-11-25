@@ -1958,3 +1958,16 @@ footer {
   .home-oc { padding: 3.5rem 0; }
   .home-oc-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
+
+/* Auditoría 2026-11-25: pie legal, contraste, botón del menú y quiz */
+.link-group ul li a { color: #555; }
+footer .footer-bottom { border-top: 1px solid #ddd; padding-top: 1.5rem; text-align: center; color: #555; font-size: 0.85rem; }
+.footer-disclaimer { max-width: 760px; margin: 0 auto 0.75rem; line-height: 1.5; }
+.footer-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem; margin-bottom: 0.75rem; }
+.footer-legal a, .footer-copy a { color: #444; text-decoration: underline; }
+.footer-legal a:hover, .footer-copy a:hover { color: var(--color-primary); }
+.footer-copy { margin: 0; }
+button.mobile-menu-btn { background: none; border: 0; padding: 0.25rem; line-height: 1; font: inherit; font-size: 1.5rem; color: var(--color-secondary); }
+button.mobile-menu-btn:focus-visible, .nav-links a:focus-visible, .btn-login:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 3px; }
+.quiz-legal { font-size: 0.78rem; color: #555; margin-top: 0.75rem; line-height: 1.5; }
+.quiz-legal a { color: var(--color-primary); text-decoration: underline; }

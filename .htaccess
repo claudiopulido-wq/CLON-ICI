@@ -1,6 +1,18 @@
 # certifyyourfuture.org: reglas de caché y portada (sitio estático)
 DirectoryIndex index.html
 
+# Una sola dirección: https y sin www (301)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off [OR]
+    RewriteCond %{HTTP_HOST} ^www\. [NC]
+    RewriteRule ^ https://certifyyourfuture.org%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Página 404 con la marca de ICI
+ErrorDocument 404 /404.html
+
+
 <IfModule mod_headers.c>
     # Páginas: el navegador revalida en cada visita (con ETag/Last-Modified casi no gasta).
     <FilesMatch "\.(html?)$">

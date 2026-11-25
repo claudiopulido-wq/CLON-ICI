@@ -5,8 +5,8 @@
 
 header("Content-Type: application/json; charset=UTF-8");
 
-const TO_EMAIL      = 'contact@certifyyourfuture.org';
-const FROM_EMAIL    = 'contact@certifyyourfuture.org';
+const TO_EMAIL      = 'ici@certifyyourfuture.org';
+const FROM_EMAIL    = 'ici@certifyyourfuture.org';
 const ALLOWED_HOSTS = ['certifyyourfuture.org', 'www.certifyyourfuture.org'];
 const MAX_PER_IP    = 5;    // envíos por IP por hora
 const MAX_PER_DAY   = 100;  // envíos totales por día

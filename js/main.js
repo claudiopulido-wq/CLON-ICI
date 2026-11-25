@@ -25,11 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!mobileBtn || !navLinks) return;
     const mobileIcon = mobileBtn.querySelector('i');
 
-    // El botón es un <div>; lo hacemos accesible por teclado y lector de pantalla
-    mobileBtn.setAttribute('role', 'button');
-    mobileBtn.setAttribute('tabindex', '0');
-    mobileBtn.setAttribute('aria-label', 'Open menu');
-    mobileBtn.setAttribute('aria-expanded', 'false');
+    // El botón es un <button> real: Enter y Espacio ya disparan el clic
 
     function setMenuOpen(open) {
         navLinks.classList.toggle('active', open);
@@ -41,13 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mobileBtn.addEventListener('click', () => {
         setMenuOpen(!navLinks.classList.contains('active'));
-    });
-
-    mobileBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setMenuOpen(!navLinks.classList.contains('active'));
-        }
     });
 
     document.addEventListener('keydown', (e) => {

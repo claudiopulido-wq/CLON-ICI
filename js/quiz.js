@@ -135,7 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let resultId = 'result-6'; // Default Advisor
         
-        if (step3 === "Validate my current experience" || step4 === "Distance-based competency assessment") {
+        if (step4 === "Online, self-paced course") {
+            resultId = 'result-online'; // Curso en línea (Train With a Plan)
+        } else if (step3 === "Validate my current experience" || step4 === "Distance-based competency assessment") {
             resultId = 'result-5'; // Competency
         } else if (step1.length > 1 || step3 === "Start teaching professionally") {
             resultId = 'result-4'; // Triple Bundle
